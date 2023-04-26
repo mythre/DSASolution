@@ -54,6 +54,43 @@ public class ListNode {
         return head;
 
     }
+
+     ListNode removeNthFromEnd(ListNode head, int n){
+         ListNode fastPointer;
+         ListNode slowPointer;
+         ListNode prevNode = null;
+         int temp =n;
+         fastPointer=head;
+         slowPointer=head;
+         //move fast pointer by n
+         while(temp>0){
+             fastPointer=fastPointer.next;
+             temp--;
+         }
+         //while fastpointer reaches n,slow reaches length of thelist-n(nth node from the list)
+
+         while(fastPointer!=null){
+             prevNode=slowPointer;
+             slowPointer = slowPointer.next;
+             fastPointer = fastPointer.next;
+         }
+
+         //slowpointer is the node to be removed
+         //if head is to be removed
+         if (slowPointer==head)
+         {
+             head=slowPointer.next;
+             return head;
+         }
+
+         prevNode.next=slowPointer.next;
+         return head;
+
+
+
+     }
+
+
 }
 
 
